@@ -2,13 +2,6 @@
  * Returns all of the registered extension commands for this extension
  * and their shortcut (if active).
  *
- * Since there is only one registered command in this sample extension,
- * the returned `commandsArray` will look like the following:
- *    [{
- *       name: "toggle-feature",
- *       description: "Send a 'toggle-feature' event to the extension"
- *       shortcut: "Ctrl+Shift+U"
- *    }]
  */
 let gettingAllCommands = browser.commands.getAll();
 gettingAllCommands.then((commands) => {
@@ -22,17 +15,20 @@ gettingAllCommands.then((commands) => {
 /**
  * Fired when a registered command is activated using a keyboard shortcut.
  *
- * In this sample extension, there is only one registered command: "Ctrl+Shift+U".
- * On Mac, this command will automatically be converted to "Command+Shift+U".
+ * Commands of type "Ctrl+Shift+1" will automatically be converted to 
+ * "Command+Shift+U" on Mac;
  */
 browser.commands.onCommand.addListener((command) => {
-  // browser.tabs.create({url: "https://developer.mozilla.org"});
+  // console.log("Got a command", command);
+  // `command` will be "play-soldier", "play-spear", etc. as in manifest
+
   browser.tabs.query({currentWindow: true, active: true})
     .then((tabArray) => {
       let tabId = tabArray[0].id;
 
       browser.tabs.sendMessage(tabId, {
-        command: "lookup-title",
+        command: "play-card",
+        rank: command.substring(5)
       });
     });
 });

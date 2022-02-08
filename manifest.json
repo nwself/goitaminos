@@ -1,13 +1,13 @@
 {
-  "name": "Sample Commands Extension",
-  "description": "Press Ctrl+Shift+U to send an event (Command+Shift+U on a Mac).",
-  "homepage_url": "https://github.com/mdn/webextensions-examples/tree/master/commands",
+  "name": "Goitaminos",
+  "description": "Press Ctrl+Shift+1 through 8 to play a card on Board Game Arena Kami",
+  "homepage_url": "https://github.com/nwself/goitaminos",
   "manifest_version": 2,
   "version": "1.0",
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "commands-demo@mozilla.org",
+      "id": "goitaminos@theselfs.org",
       "strict_min_version": "60.0b5"
     }
   },
@@ -17,9 +17,37 @@
   },
 
   "commands": {
-    "toggle-feature": {
-      "suggested_key": { "default": "Ctrl+Shift+U" },
-      "description": "Send a 'toggle-feature' event to the extension"
+    "play-soldier": {
+      "suggested_key": { "default": "Ctrl+Shift+1" },
+      "description": "Send a 'play-soldier' event to the extension"
+    },
+    "play-horse": {
+      "suggested_key": { "default": "Ctrl+Shift+2" },
+      "description": "Send a 'play-horse' event to the extension"
+    },
+    "play-spear": {
+      "suggested_key": { "default": "Ctrl+Shift+3" },
+      "description": "Send a 'play-spear' event to the extension"
+    },
+    "play-silver_dragon": {
+      "suggested_key": { "default": "Ctrl+Shift+4" },
+      "description": "Send a 'play-silver_dragon' event to the extension"
+    },
+    "play-gold_dragon": {
+      "suggested_key": { "default": "Ctrl+Shift+5" },
+      "description": "Send a 'play-gold_dragon' event to the extension"
+    },
+    "play-madman": {
+      "suggested_key": { "default": "Ctrl+Shift+6" },
+      "description": "Send a 'play-madman' event to the extension"
+    },
+    "play-tower": {
+      "suggested_key": { "default": "Ctrl+Shift+7" },
+      "description": "Send a 'play-tower' event to the extension"
+    },
+    "play-empress": {
+      "suggested_key": { "default": "Ctrl+Shift+8" },
+      "description": "Send a 'play-empress' event to the extension"
     }
   },
 
@@ -28,12 +56,8 @@
     "browser_style": true
   },
 
-  "permissions": [
-    "*://librarypoint.overdrive.com/*"
-  ],
-
   "content_scripts": [{
-      "matches": ["<all_urls>"],
-      "js": ["libbification.js"]
+      "matches": ["https://boardgamearena.com/*"],
+      "js": ["goitaminos.js"]
   }]
 }
